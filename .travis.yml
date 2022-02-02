@@ -5,3 +5,12 @@ services:
 scripts:
   - docker build -t eazybright/node .
   - docker images eazybright/node
+
+before_deploy:
+  - docker login -u eazybright -p headprefect76984
+
+deploy:
+  provider: script
+  script: docker push eazybright/node
+  on:
+    branch: main
